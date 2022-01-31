@@ -40,6 +40,7 @@ class OpenWindow(QMainWindow):
         self.about_action_2.triggered.connect(self.about_1)
 
     def about(self):
+        print('hello nahuy')
         self.about_window.show()
 
     def about_1(self):
