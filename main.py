@@ -9,23 +9,25 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QInputDialog, QLabel
 from PyQt5.QtWidgets import QCheckBox, QLabel, QLineEdit, QVBoxLayout
 import sqlite3
-import DateTime
+import datetime
 
 
 class AboutWindow(QWidget):  # Menubar
     def __init__(self):
         super(AboutWindow, self).__init__()
-        self.setWindowTitle('О программе')
         self.setLayout(QVBoxLayout(self))
         self.info = QLabel(self)
         self.info.setText('Github profiles: Nikdevelop and jur4ikoff')  # о создателях
         self.layout().addWidget(self.info)
 
-   # def retranslateUi(self, MainWindow):
-   #     _translate = QtCore.QCoreApplication.translate
-   #     MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-   #     self.label.setText(_translate("MainWindow", "Ссылка"))
-   #     self.label_2.setText(_translate("MainWindow", "https://ru.stackoverflow.com/"))
+
+class AboutWindow_1(QWidget):  # Menubar
+    def __init__(self):
+        super(AboutWindow_1, self).__init__()
+        self.setLayout(QVBoxLayout(self))
+        self.info1 = QLabel(self)
+        self.info1.setText('Проект для МИРЭА')  # о создателях
+        self.layout().addWidget(self.info1)
 
 
 class OpenWindow(QMainWindow):
@@ -35,9 +37,13 @@ class OpenWindow(QMainWindow):
         self.initUI()
         self.about_window = AboutWindow()
         self.about_action.triggered.connect(self.about)
+        self.about_action_2.triggered.connect(self.about_1)
 
     def about(self):
         self.about_window.show()
+
+    def about_1(self):
+        self.about_window_1.show()
 
     def initUI(self):
         print('Открыто Приложение')  # Для отладки
