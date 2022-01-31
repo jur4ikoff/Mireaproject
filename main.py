@@ -49,6 +49,7 @@ class OpenWindow(QMainWindow):
         self.initUI()
 
     def about(self):
+        print('hello nahuy')
         self.about_window.show()
 
     def about_1(self):
