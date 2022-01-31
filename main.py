@@ -44,6 +44,7 @@ class OpenWindow(QMainWindow):
 
     def about_1(self):
         self.about_window_1.show()
+        print('hello1')
 
     def initUI(self):
         print('Открыто Приложение')  # Для отладки
