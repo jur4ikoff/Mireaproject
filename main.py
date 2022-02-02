@@ -16,24 +16,20 @@ import datetime
 class AboutWindow(QWidget):  # Menubar
     def __init__(self):
         super(AboutWindow, self).__init__()
+        self.setWindowTitle('О программе')
         self.setLayout(QVBoxLayout(self))
         self.info = QLabel(self)
         self.info.setFont(QtGui.QFont("Roboto", 14))
-        self.info.setText('Github profiles: Nikdevelop and jur4ikoff')  # о создателях
+        self.info.setText('Github profiles: Nikdevelop and jur4ikoff' "\n"
+                          'Этот проект был написан в рамках проектной деятельности в 10 классе.' "\n"
+                          ' С помощью языков программирования и нейросетей, ' "\n"
+                          ' мы написали программу по анализу и авторизации по уникальному' "\n"
+                          ' графическому символу, введеного пользователем'
+                          )  # о создателях
+        self.info.setStyleSheet("color: rgb(255, 255, 255)")
+        self.setStyleSheet("border-radius: 40px; background-color: qlineargradient(spread:pad, x1:0, y1:0,\
+         x2:1, y2:1, stop:0 rgba(41, 37, 54, 255), stop:1 rgba(39, 37, 55, 255));")
         self.layout().addWidget(self.info)
-
-
-class AboutWindow_1(QWidget):  # Menubar
-    def __init__(self):
-        super(AboutWindow_1, self).__init__()
-        self.setLayout(QVBoxLayout(self))
-        self.info1 = QLabel(self)
-        self.info1.setFont(QtGui.QFont("Roboto", 14))
-        self.info1.setText('Этот проект был написан в рамках проектной деятельности в 10 классе.' "\n"
-                           ' С помощью языков программирования и нейросетей, ' "\n"
-                           ' мы написали программу по анализу и авторизации по уникальному' "\n"
-                           ' графическому символу, введеного пользователем')  # о создателях
-        self.layout().addWidget(self.info1)
 
 
 class OpenWindow(QMainWindow):
@@ -43,16 +39,17 @@ class OpenWindow(QMainWindow):
         uic.loadUi('Main1.ui', self)
         # self.setStyleSheet("QMainWindow{background-color: #2A3038;}")
         self.about_window = AboutWindow()
-        self.about_window_1 = AboutWindow_1()
-        # self.about_action.triggered.connect(self.about)
+        self.action_button.clicked.connect(self.about)
+        self.close_wnd.clicked.connect(self.terminate)
         # self.about_action_2.triggered.connect(self.about_1)
         self.initUI()
 
     def about(self):
         self.about_window.show()
 
-    def about_1(self):
-        self.about_window_1.show()
+    def terminate(self):
+        print('Нажат крестик')
+        sys.exit()
 
     def initUI(self):
         print('Открыто Приложение')  # Для отладки
