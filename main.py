@@ -1,8 +1,17 @@
 import sys
 import os
 import random
-
+import sys
+import platform
+from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint,
+                            QRect,
+QSize, QTime, QUrl, Qt, QEvent)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence,
+                           QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+from PySide2.QtWidgets import *
 import PySide2
+from PyQt5.QtCore import QSize, Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPainter, QColor, QPixmap
 from PyQt5 import uic
@@ -35,10 +44,9 @@ class AboutWindow(QWidget):  # Menubar
 class OpenWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        # uic.loadUi('main.ui', self)
         uic.loadUi('Main1.ui', self)
-        # self.setStyleSheet("QMainWindow{background-color: #2A3038;}")
         self.about_window = AboutWindow()
+        self.drop_shadow_frame.setContentsMargins(0, 0, 0, 0)
         self.action_button.clicked.connect(self.about)
         self.close_wnd.clicked.connect(self.terminate)
         # self.about_action_2.triggered.connect(self.about_1)
@@ -53,7 +61,6 @@ class OpenWindow(QMainWindow):
 
     def initUI(self):
         print('Открыто Приложение')  # Для отладки
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
