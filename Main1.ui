@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>880</width>
-    <height>604</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -31,7 +31,7 @@
    <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: none</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -39,16 +39,16 @@
      <number>0</number>
     </property>
     <property name="leftMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <item>
      <widget class="QFrame" name="drop_shadow_frame">
@@ -57,6 +57,9 @@
         <family>Roboto</family>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 30px; 
@@ -230,29 +233,6 @@ QPushButton:hover {
             <widget class="QPushButton" name="min_wnd">
              <property name="geometry">
               <rect>
-               <x>520</x>
-               <y>19</y>
-               <width>17</width>
-               <height>17</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border: none;
-	border-radius: 8px;
-	background-color: rgba(8, 163, 83, 230);
-}
-QPushButton:hover {
-	background-color: rgba(8, 163, 83, 255)
-}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="close_wnd">
-             <property name="geometry">
-              <rect>
                <x>550</x>
                <y>19</y>
                <width>17</width>
@@ -263,10 +243,33 @@ QPushButton:hover {
               <string notr="true">QPushButton {
 	border: none;
 	border-radius: 8px;
-	background-color: rgba(176, 9, 9, 230);
+	background-color: rgba(29, 222, 26, 200);
 }
 QPushButton:hover {
-	background-color: rgba(176, 9, 9, 255)
+	background-color: rgba(29, 222, 26, 255)
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="close_wnd">
+             <property name="geometry">
+              <rect>
+               <x>580</x>
+               <y>19</y>
+               <width>17</width>
+               <height>17</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	border: none;
+	border-radius: 8px;
+	background-color: rgba(225, 31, 13, 200);
+}
+QPushButton:hover {
+	background-color: rgba(225, 31, 13, 255)
 }</string>
              </property>
              <property name="text">
@@ -298,25 +301,198 @@ QPushButton:hover {
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="credits_bar">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: none;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
+         <widget class="QFrame" name="frame">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>50</y>
+            <width>571</width>
+            <height>331</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 30px; 
+background-color: rgb(50, 45, 65);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>80</x>
+            <y>390</y>
+            <width>181</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(184, 189, 200)</string>
+          </property>
+          <property name="text">
+           <string>Если вас еще нет в системе</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="reg_btn">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>420</y>
+            <width>281</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="tabletTracking">
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border: none;
+	border-radius: 17px;
+	background-color: rgba(50, 45, 65, 255);
+    color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgba(77, 80, 112, 120)
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Зарегистрироваться</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>30</y>
+            <width>321</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:rgb(184, 189, 200)</string>
+          </property>
+          <property name="text">
+           <string>Нарисуйте подпись в окошко, не выходя за границы</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="confirm_btn">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>420</y>
+            <width>251</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="tabletTracking">
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border: none;
+	border-radius: 17px;
+	background-color: rgba(50, 45, 65, 255);
+    color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgba(77, 80, 112, 120)
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Подтвердить</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>680</x>
+            <y>70</y>
+            <width>111</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(184, 189, 200);</string>
+          </property>
+          <property name="text">
+           <string>Подписи схожи на: </string>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>

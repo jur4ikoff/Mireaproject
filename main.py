@@ -1,25 +1,30 @@
-import sys
-import os
-import random
-import sys
-import platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint,
-                            QRect,
-QSize, QTime, QUrl, Qt, QEvent)
+                            QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence,
                            QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-import PySide2
 from PyQt5.QtCore import QSize, Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPainter, QColor, QPixmap
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QInputDialog, QLabel
-from PyQt5.QtWidgets import QCheckBox, QLabel, QLineEdit, QVBoxLayout
-import sqlite3
+from PyQt5.QtWidgets import QCheckBox, QLineEdit, QVBoxLayout
+from PyQt5.QtWidgets import (QGraphicsDropShadowEffect, QGridLayout, QSpacerItem,
+                             QSizePolicy)
 import datetime
+import sqlite3
+import PySide2
+import sys
+import os
+import random
+
+if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
 class AboutWindow(QWidget):  # Menubar
@@ -36,20 +41,31 @@ class AboutWindow(QWidget):  # Menubar
                           ' графическому символу, введеного пользователем'
                           )  # о создателях
         self.info.setStyleSheet("color: rgb(255, 255, 255)")
-        self.setStyleSheet("border-radius: 40px; background-color: qlineargradient(spread:pad, x1:0, y1:0,\
+        self.setStyleSheet("border-radius: 30px; background-color: qlineargradient(spread:pad, x1:0, y1:0,\
          x2:1, y2:1, stop:0 rgba(41, 37, 54, 255), stop:1 rgba(39, 37, 55, 255));")
         self.layout().addWidget(self.info)
 
 
 class OpenWindow(QMainWindow):
     def __init__(self):
-        super().__init__()
+        super(OpenWindow, self).__init__()
         uic.loadUi('Main1.ui', self)
         self.about_window = AboutWindow()
-        self.drop_shadow_frame.setContentsMargins(0, 0, 0, 0)
         self.action_button.clicked.connect(self.about)
         self.close_wnd.clicked.connect(self.terminate)
-        # self.about_action_2.triggered.connect(self.about_1)
+        self.reg_btn.clicked.connect(self.registr)
+        self.min_wnd.clicked.connect(self.set_min)
+        self.confirm_btn.clicked.connect(self.confirm_input)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setStyleSheet("border-radius: 20px; background: rgba(0, 0, 0, 0);")
+        self.drop_shadow_frame.setStyleSheet("background-color: qlineargradient(spread:pad, \
+            x1:0, y1:0, x2:1, y2:1, stop:0 rgba(41, 37, 54, 255), stop:1 rgba(39, 37, 55, 255));\
+                                             border-radius: 30px")
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(100)
+        effect.setOffset(0, 1)
+        effect.setColor(Qt.black)
+        self.drop_shadow_frame.setGraphicsEffect(effect)
         self.initUI()
 
     def about(self):
@@ -61,6 +77,27 @@ class OpenWindow(QMainWindow):
 
     def initUI(self):
         print('Открыто Приложение')  # Для отладки
+
+    def set_min(self):
+        self.showMinimized()
+
+    def registr(self):
+        reg = Registration()
+        reg.show()
+        print("Открыто окно регистрации")
+
+    def confirm_input(self):
+        pass
+
+
+class Registration(QWidget):
+    def __init__(self):
+        super(Registration, self).__init__()
+        self.initUI()
+
+    def initUI(self):
+        pass
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
