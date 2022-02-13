@@ -1,0 +1,8 @@
+numpy
+cv2
+imutils
+matplotlib
+matplotlib
+sqlite3
+io
+scikit-image

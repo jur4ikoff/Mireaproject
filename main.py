@@ -27,8 +27,6 @@ if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
-coords = None
-
 
 
 class AboutWindow(QWidget):  # Menubar
@@ -101,6 +99,15 @@ class OpenWindow(QMainWindow):
         if not self.sign_main:
             self.sign_main = input_sign.Canvas()
         self.sign_main.show()
+        self.sign_main.signal.connect(self.slot)
+        print('test')
+            
+        # print(self.sign_main.coords)
+
+    QtCore.pyqtSlot(str)
+    def slot(self, sign):
+      print(sign)
+ 
 
 class Registration(QWidget):
     def __init__(self):

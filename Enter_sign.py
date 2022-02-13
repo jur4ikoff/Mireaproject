@@ -3,12 +3,14 @@ import main as Main
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import Qt
 
-coords = [[0] * 880] * 560
 
 
 class Canvas(QtWidgets.QLabel):
+    signal = QtCore.pyqtSignal(list)
 
     def __init__(self):
+        self.coords = [[0] * 880] * 560
+
         super().__init__()
         pixmap = QtGui.QPixmap(600, 300)
         self.setPixmap(pixmap)
@@ -37,10 +39,16 @@ class Canvas(QtWidgets.QLabel):
         # Update the origin for next time.
         self.last_x = e.x()
         self.last_y = e.y()
-        coords[e.y()][e.x()] = 255
+
+        self.coords[e.y()][e.x()] = 255
 
 
     def mouseReleaseEvent(self, e):
         self.last_x = None
         self.last_y = None
 
+    QtCore.pyqtSlot()
+    def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
+        sign= self.coords
+        self.signal.emit(sign)
+        return super().closeEvent(a0)
