@@ -1,3 +1,4 @@
+import Enter_sign as input_sign
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint,
                             QRect, QSize, QTime, QUrl, Qt, QEvent)
@@ -25,6 +26,9 @@ if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
 
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+coords = None
+
 
 
 class AboutWindow(QWidget):  # Menubar
@@ -55,6 +59,7 @@ class OpenWindow(QMainWindow):
         self.close_wnd.clicked.connect(self.terminate)
         self.reg_btn.clicked.connect(self.registr)
         self.min_wnd.clicked.connect(self.set_min)
+        self.to_sign.clicked.connect(self.run_add_sign)
         self.confirm_btn.clicked.connect(self.confirm_input)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setStyleSheet("border-radius: 20px; background: rgba(0, 0, 0, 0);")
@@ -66,7 +71,8 @@ class OpenWindow(QMainWindow):
         effect.setOffset(0, 1)
         effect.setColor(Qt.black)
         self.drop_shadow_frame.setGraphicsEffect(effect)
-        self.initUI()
+        self.reg = None
+        self.sign_main= None
 
     def about(self):
         self.about_window.show()
@@ -82,21 +88,49 @@ class OpenWindow(QMainWindow):
         self.showMinimized()
 
     def registr(self):
-        reg = Registration()
-        reg.show()
+        if not self.reg:
+            self.reg = Registration()
+        self.reg.show()
+        self.hide()
         print("Открыто окно регистрации")
 
     def confirm_input(self):
         pass
 
+    def run_add_sign(self):
+        if not self.sign_main:
+            self.sign_main = input_sign.Canvas()
+        self.sign_main.show()
 
 class Registration(QWidget):
     def __init__(self):
         super(Registration, self).__init__()
+        uic.loadUi('Reg.ui', self)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.back_button.clicked.connect(self.back_btn)
         self.initUI()
 
     def initUI(self):
-        pass
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(50)
+        effect.setOffset(0, 2)
+        effect.setColor(Qt.black)
+        self.frame.setGraphicsEffect(effect)
+        self.setStyleSheet("border-radius: 20px; background: rgba(0, 0, 0, 0);")
+        self.close_wnd.clicked.connect(self.terminate)
+        self.min_wnd.clicked.connect(self.set_min)
+
+    def back_btn(self):
+        self.opn_wnd1 = OpenWindow()
+        self.opn_wnd1.show()
+        self.hide()
+
+    def terminate(self):
+        print('Нажат крестик')
+        sys.exit()
+
+    def set_min(self):
+        self.showMinimized()
 
 
 if __name__ == '__main__':

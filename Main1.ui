@@ -301,26 +301,6 @@ QPushButton:hover {
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QFrame" name="frame">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>50</y>
-            <width>571</width>
-            <height>331</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border-radius: 30px; 
-background-color: rgb(50, 45, 65);</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-         </widget>
          <widget class="QLabel" name="label">
           <property name="geometry">
            <rect>
@@ -402,8 +382,8 @@ QPushButton:hover {
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>90</x>
-            <y>30</y>
+            <x>140</x>
+            <y>130</y>
             <width>321</width>
             <height>16</height>
            </rect>
@@ -418,7 +398,7 @@ QPushButton:hover {
            <string notr="true">color:rgb(184, 189, 200)</string>
           </property>
           <property name="text">
-           <string>Нарисуйте подпись в окошко, не выходя за границы</string>
+           <string>Введите подпись в новом окне</string>
           </property>
          </widget>
          <widget class="QPushButton" name="confirm_btn">
@@ -477,20 +457,60 @@ QPushButton:hover {
            <string>Подтвердить</string>
           </property>
          </widget>
-         <widget class="QLabel" name="label_3">
+         <widget class="QPushButton" name="to_sign">
           <property name="geometry">
            <rect>
-            <x>680</x>
-            <y>70</y>
-            <width>111</width>
-            <height>16</height>
+            <x>130</x>
+            <y>150</y>
+            <width>281</width>
+            <height>71</height>
            </rect>
           </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto</family>
+            <pointsize>14</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="tabletTracking">
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(184, 189, 200);</string>
+           <string notr="true">QPushButton {
+	border: none;
+	border-radius: 17px;
+	background-color: rgba(50, 45, 65, 255);
+    color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgba(77, 80, 112, 120)
+}
+</string>
           </property>
           <property name="text">
-           <string>Подписи схожи на: </string>
+           <string>Ввести подпись</string>
           </property>
          </widget>
         </widget>
