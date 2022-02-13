@@ -27,6 +27,7 @@ if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
+coords = None
 
 
 class AboutWindow(QWidget):  # Menubar
@@ -70,7 +71,7 @@ class OpenWindow(QMainWindow):
         effect.setColor(Qt.black)
         self.drop_shadow_frame.setGraphicsEffect(effect)
         self.reg = None
-        self.sign_main= None
+        self.sign_main = None
 
     def about(self):
         self.about_window.show()
@@ -100,14 +101,14 @@ class OpenWindow(QMainWindow):
             self.sign_main = input_sign.Canvas()
         self.sign_main.show()
         self.sign_main.signal.connect(self.slot)
-        print('test')
-            
         # print(self.sign_main.coords)
 
     QtCore.pyqtSlot(str)
+
     def slot(self, sign):
-      print(sign)
- 
+        coords = sign
+        print(coords)
+
 
 class Registration(QWidget):
     def __init__(self):
@@ -126,6 +127,23 @@ class Registration(QWidget):
         self.setStyleSheet("border-radius: 20px; background: rgba(0, 0, 0, 0);")
         self.close_wnd.clicked.connect(self.terminate)
         self.min_wnd.clicked.connect(self.set_min)
+        self.sign_btn.clicked.connect(self.run_add_sign)
+        self.reg_btn.clicked.connect(self.confirm_reg)
+        self.sign_main = None
+
+    def run_add_sign(self):
+        if not self.sign_main:
+            self.sign_main = input_sign.Canvas()
+        self.sign_main.show()
+        self.sign_main.signal.connect(self.slot)
+        # print(self.sign_main.coords)
+
+    def confirm_reg(self):
+        self.name = self.name_input.text()
+        self.forname = self.forname_input.text()
+        self.email = self.email_input.text()
+        # coords
+        print(self.name, self.forname, self.email)
 
     def back_btn(self):
         self.opn_wnd1 = OpenWindow()
@@ -138,6 +156,12 @@ class Registration(QWidget):
 
     def set_min(self):
         self.showMinimized()
+
+    QtCore.pyqtSlot(str)
+
+    def slot(self, sign):
+        coords = sign
+        # print(coords)
 
 
 if __name__ == '__main__':
