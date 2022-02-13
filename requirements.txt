@@ -1,8 +1,6 @@
 numpy
-cv2
+opencv-python
 imutils
 matplotlib
 matplotlib
-sqlite3
-io
 scikit-image
