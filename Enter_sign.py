@@ -1,5 +1,4 @@
 import sys
-import main as Main
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import Qt
 
@@ -16,6 +15,7 @@ class Canvas(QtWidgets.QLabel):
 
         super().__init__()
         pixmap = QtGui.QPixmap(WIDTH, HEIGHT)
+        pixmap.fill(QtGui.QColor('#000000'))
         self.setPixmap(pixmap)
 
         self.last_x, self.last_y = None, None
@@ -55,5 +55,14 @@ class Canvas(QtWidgets.QLabel):
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         sign = self.coords
+        
+        self.coords = []
+        for i in range(HEIGHT):
+            self.coords.append([0] * WIDTH)
+            
+        pixmap = QtGui.QPixmap(WIDTH, HEIGHT)
+        pixmap.fill(QtGui.QColor('#000000'))
+        self.setPixmap(pixmap)
+
         self.signal.emit(sign)
         return super().closeEvent(a0)

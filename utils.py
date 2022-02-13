@@ -1,3 +1,5 @@
+# Login: -1 if incorrect signature. -2 if len(users) == 0. or user that has the most similar signature
+
 # Imports
 import numpy as np
 import cv2
@@ -59,19 +61,23 @@ def findBorder(array):
     return left-1, top-1, len(array[0]) - right+1, bottom+1
 
 def process_image(new_img):
-    img = np.array(new_img)
+    # print(type(new_img))
+    img = np.array(new_img, dtype="uint8")
+
     original = img.copy()
 
     # Converting to grayscale image
-    gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-    grayWithBlur = cv2.GaussianBlur(gray,(5,5),0)
 
-    final = cv2.Canny(gray,80,200)
+    # gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+    # grayWithBlur = cv2.GaussianBlur(original,(5,5),0)
+
+    final = cv2.Canny(original,80,200)
 
     final_arr = np.array(final)
-    left, top, right, bottom = findBorder(final_arr)
+    # left, top, right, bottom = findBorder(final_arr)
 
-    return final[top:bottom, left:right]
+    # return final[top:bottom, left:right]
+    return final
 
 def adapt_array(arr):
     """
@@ -118,12 +124,16 @@ def try_login(input_signature):
     best_user=None
     max=0
 
+    if len(users) == 0:
+        return -2
+
     for i in users:
         # plt.imshow(i.sign, cmap='gray')
         
         current = ssim(input_image, i.sign)
         if current > max:
             best_user=i
+            max=current
 
     if max < MIN_SIMILARITY:
         print('INCORRECT SIGNATURE!')

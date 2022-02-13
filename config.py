@@ -1,4 +1,4 @@
 # Constants
-DB_FILE='drive/MyDrive/users.db'
+DB_FILE='users.db'
 WIDTH = 500
-MIN_SIMILARITY = 0.5
+MIN_SIMILARITY = 0.6

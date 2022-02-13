@@ -21,13 +21,13 @@ import sys
 import os
 import random
 
+from utils import register, try_login
+
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-
-coords = None
 
 
 class AboutWindow(QWidget):  # Menubar
@@ -94,7 +94,14 @@ class OpenWindow(QMainWindow):
         print("Открыто окно регистрации")
 
     def confirm_input(self):
-        pass
+        res = try_login(self.coords)
+
+        if res == -1:
+            print('неправильная подпись')
+        elif res == -2:
+            print('добавьте пользователя')
+        else:
+            print(res.name) # если все ок, выводим имя юзера
 
     def run_add_sign(self):
         if not self.sign_main:
@@ -103,11 +110,11 @@ class OpenWindow(QMainWindow):
         self.sign_main.signal.connect(self.slot)
         # print(self.sign_main.coords)
 
-    QtCore.pyqtSlot(str)
+    QtCore.pyqtSlot(list)
 
     def slot(self, sign):
-        coords = sign
-        print(coords)
+        self.coords = sign
+        # print(coords)
 
 
 class Registration(QWidget):
@@ -135,8 +142,13 @@ class Registration(QWidget):
         if not self.sign_main:
             self.sign_main = input_sign.Canvas()
         self.sign_main.show()
-        self.sign_main.signal.connect(self.slot)
+        self.sign_main.signal.connect(self.slot2)
         # print(self.sign_main.coords)
+
+    QtCore.pyqtSlot(list)
+
+    def slot2(self, sign):
+        self.coords = sign
 
     def confirm_reg(self):
         self.name = self.name_input.text()
@@ -145,7 +157,10 @@ class Registration(QWidget):
         # coords
         print(self.name, self.forname, self.email)
 
+        register(self.name, self.forname, self.email, self.coords)
+
     def back_btn(self):
+        self.coords=[]
         self.opn_wnd1 = OpenWindow()
         self.opn_wnd1.show()
         self.hide()
@@ -157,11 +172,6 @@ class Registration(QWidget):
     def set_min(self):
         self.showMinimized()
 
-    QtCore.pyqtSlot(str)
-
-    def slot(self, sign):
-        coords = sign
-        # print(coords)
 
 
 if __name__ == '__main__':
