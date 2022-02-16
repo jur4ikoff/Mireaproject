@@ -227,7 +227,7 @@ QPushButton:hover {
               <string notr="true">color: rgb(255, 255, 255);</string>
              </property>
              <property name="text">
-              <string>Приложение по распознованию подписи</string>
+              <string>Распознование подписи</string>
              </property>
             </widget>
             <widget class="QPushButton" name="min_wnd">

@@ -109,8 +109,12 @@ class OpenWindow(QMainWindow):
         #     print(res.name) # если все ок, выводим имя юзера
         if answers[self.current]==0:
             print('Неверная подпись пользователя')
+            # msg = QMessageBox()
+            # msg.about(self, 'Авторизация', 'Вы неверно ввели подпись')
         else:
             print('Вы успешно авторизовались')
+            # msg = QMessageBox()
+            # msg.about(self, 'Авторизация', 'Вы успешно авторизовались')
             
         self.current+=1
 
