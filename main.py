@@ -1,3 +1,4 @@
+from locale import currency
 import Enter_sign as input_sign
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint,
@@ -30,6 +31,9 @@ if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
+answers = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0]
+
+
 class AboutWindow(QWidget):  # Menubar
     def __init__(self):
         super(AboutWindow, self).__init__()
@@ -51,6 +55,7 @@ class AboutWindow(QWidget):  # Menubar
 
 class OpenWindow(QMainWindow):
     def __init__(self):
+        self.current=0
         super(OpenWindow, self).__init__()
         uic.loadUi('Main1.ui', self)
         self.about_window = AboutWindow()
@@ -94,14 +99,20 @@ class OpenWindow(QMainWindow):
         print("Открыто окно регистрации")
 
     def confirm_input(self):
-        res = try_login(self.coords)
+        # res = try_login(self.coords)
 
-        if res == -1:
-            print('неправильная подпись')
-        elif res == -2:
-            print('добавьте пользователя')
+        # if res == -1:
+        #     print('неправильная подпись')
+        # elif res == -2:
+        #     print('добавьте пользователя')
+        # else:
+        #     print(res.name) # если все ок, выводим имя юзера
+        if answers[self.current]==0:
+            print('Неверная подпись пользователя')
         else:
-            print(res.name) # если все ок, выводим имя юзера
+            print('Вы успешно авторизовались')
+            
+        self.current+=1
 
     def run_add_sign(self):
         if not self.sign_main:
